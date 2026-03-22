@@ -1,0 +1,113 @@
+<div class="mx-auto max-w-6xl rounded-xl overflow-hidden h-[600px] relative text-left flex flex-col md:flex-row hover-lift animate-fade-in-scale demo-panel-interfere">
+
+    <aside class="w-full md:w-64 glass-effect border-r border-slate-700/50 p-4 hidden md:flex flex-col gap-4 z-20" aria-label="Pazar ve filtreler">
+        <div class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 flex items-center justify-between">
+            <span>Pazar &amp; Filtre</span>
+            <span class="kbd">F</span>
+        </div>
+
+        <div class="relative group tooltip">
+            <div id="country-trigger" class="bg-slate-700 p-2 rounded text-sm text-white flex justify-between items-center cursor-pointer hover:bg-slate-600 transition-all hover:scale-[1.02] ripple-container">
+                <span id="current-country">🇺🇸 United States</span>
+                <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300" id="country-arrow"></i>
+            </div>
+            <span class="tooltip-text">Pazar seçin (Shift+C)</span>
+            <div id="country-menu" class="hidden absolute top-full left-0 w-full bg-slate-700 border border-slate-600 rounded mt-1 shadow-xl z-50 overflow-hidden">
+                <div class="p-2 border-b border-slate-600">
+                    <input type="text" id="country-search" placeholder="Ülke ara..." class="search-input" autocomplete="off" />
+                </div>
+                <div id="country-list" class="max-h-48 overflow-y-auto custom-scrollbar">
+                    <div class="p-2 hover:bg-slate-600 cursor-pointer text-sm transition-all country-item" data-country="🇺🇸 United States">🇺🇸 United States</div>
+                    <div class="p-2 hover:bg-slate-600 cursor-pointer text-sm transition-all country-item" data-country="🇹🇷 Turkey">🇹🇷 Turkey</div>
+                    <div class="p-2 hover:bg-slate-600 cursor-pointer text-sm transition-all country-item" data-country="🇩🇪 Germany">🇩🇪 Germany</div>
+                    <div class="p-2 hover:bg-slate-600 cursor-pointer text-sm transition-all country-item" data-country="🇧🇷 Brazil">🇧🇷 Brazil</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative group tooltip">
+            <div id="category-trigger" class="bg-slate-700 p-2 rounded text-sm text-white flex justify-between items-center cursor-pointer hover:bg-slate-600 transition-all hover:scale-[1.02] ripple-container">
+                <span id="current-category">🧴 Skincare</span>
+                <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300" id="category-arrow"></i>
+            </div>
+            <span class="tooltip-text">Kategori değiştir</span>
+            <div id="category-menu" class="hidden absolute top-full left-0 w-full bg-slate-700 border border-slate-600 rounded mt-1 shadow-xl z-50 overflow-hidden">
+                <div id="category-list" class="max-h-48 overflow-y-auto custom-scrollbar">
+                    <div class="p-2 hover:bg-slate-600 cursor-pointer text-sm transition-all category-item" data-category="🧴 Skincare">🧴 Skincare</div>
+                    <div class="p-2 hover:bg-slate-600 cursor-pointer text-sm transition-all category-item" data-category="🍳 Yemek">🍳 Yemek</div>
+                    <div class="p-2 hover:bg-slate-600 cursor-pointer text-sm transition-all category-item" data-category="📱 Mobil Uygulama">📱 Mobil Uygulama</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-auto">
+            <div class="p-3 bg-indigo-900/30 border border-indigo-500/30 rounded-lg hover:border-indigo-500/50 transition-all tooltip">
+                <div class="flex items-center justify-between mb-1">
+                    <p class="text-xs text-indigo-300">Kalan Kredi</p>
+                    <span id="credit-text" class="text-xs text-indigo-400 font-bold">75%</span>
+                </div>
+                <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
+                    <div id="credit-bar" class="bg-gradient-to-r from-indigo-500 to-purple-500 h-full transition-all duration-1000 relative overflow-hidden" style="width: 75%;">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer-bar"></div>
+                    </div>
+                </div>
+                <span class="tooltip-text">Her analiz 5 kredi kullanır</span>
+            </div>
+        </div>
+    </aside>
+
+    <div id="main-content" class="flex-1 p-6 overflow-y-auto custom-scrollbar bg-slate-900/40 relative min-h-0">
+
+        <div id="loading-overlay" class="hidden absolute inset-0 bg-slate-900/95 backdrop-blur-sm z-50 flex items-center justify-center">
+            <div class="text-center animate-fade-in-scale">
+                <div class="relative w-20 h-20 mx-auto mb-4">
+                    <i class="fa-solid fa-circle-notch fa-spin text-4xl text-indigo-500"></i>
+                    <div class="absolute inset-0 rounded-full border-4 border-indigo-500/20"></div>
+                </div>
+                <p class="text-sm text-slate-300 mb-2">Pazar verileri analiz ediliyor...</p>
+                <div class="flex gap-1 justify-center">
+                    <div class="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: 0s"></div>
+                    <div class="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                    <div class="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center mb-6">
+            <div>
+                <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-chart-line text-indigo-500"></i>
+                    Trend Analizleri
+                </h3>
+                <p class="text-slate-400 text-xs mt-1" id="results-count">4 viral içerik bulundu</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="bg-green-500/20 text-green-400 text-xs px-3 py-1.5 rounded-full border border-green-500/30 animate-pulse flex items-center gap-2 relative">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-ping absolute"></span>
+                    <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+                    Canlı Veri
+                </span>
+                <button id="bulk-report-btn" type="button" class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-xs font-bold transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed tooltip">
+                    <i class="fa-solid fa-file-export mr-2"></i>
+                    Toplu Rapor
+                    <span class="tooltip-text">Seçili videoların raporunu çıkar</span>
+                </button>
+            </div>
+        </div>
+
+        <section class="video-grid-region mb-6" aria-label="Viral video ızgarası">
+            <div id="videos-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        </section>
+
+        <div id="ai-result-area" class="hidden glass-effect rounded-xl p-4 border border-indigo-500/20 mb-4 text-left">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-indigo-300 uppercase tracking-wide">AI script çıktısı</span>
+                <button type="button" id="ai-result-close" class="text-slate-400 hover:text-white text-xs">Kapat</button>
+            </div>
+            <pre id="typewriter-text" class="text-slate-200 text-sm whitespace-pre-wrap font-sans leading-relaxed m-0"></pre>
+            <button type="button" id="copy-script-btn" class="mt-3 text-xs text-indigo-400 hover:text-indigo-300">Panoya kopyala</button>
+        </div>
+
+        <button type="button" id="generate-btn" class="hidden" tabindex="-1" aria-hidden="true">generate</button>
+    </div>
+</div>
