@@ -1,15 +1,19 @@
 'use client';
 
-import { FormEvent, useEffect } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { useToast } from '@/context/ToastContext';
+import { createBrowserSupabaseClient } from '@/lib/supabase/client';
 
 type Props = {
     open: boolean;
     onClose: () => void;
 };
 
+const TABLE = 'early_access_leads';
+
 export function EarlyAccessModal({ open, onClose }: Props) {
     const toast = useToast();
+    const [submitting, setSubmitting] = useState(false);
 
     useEffect(() => {
         if (open) {
@@ -22,14 +26,67 @@ export function EarlyAccessModal({ open, onClose }: Props) {
         };
     }, [open]);
 
-    function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    async function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         const form = e.currentTarget;
         const email = (form.elements.namedItem('email') as HTMLInputElement)?.value?.trim();
+        const role = (form.elements.namedItem('role') as HTMLSelectElement)?.value || null;
+        const country = (form.elements.namedItem('country') as HTMLSelectElement)?.value || null;
+        const note = (form.elements.namedItem('note') as HTMLTextAreaElement)?.value?.trim() || null;
+
         if (!email) {
             toast.show('Lütfen geçerli bir e-posta adresi girin.', 'error', 2500);
             return;
         }
+
+        const supabase = createBrowserSupabaseClient();
+        if (!supabase) {
+            toast.show(
+                'Supabase yapılandırması eksik. Proje kökünde .env.local oluşturup NEXT_PUBLIC_SUPABASE_URL ve NEXT_PUBLIC_SUPABASE_ANON_KEY ekleyin.',
+                'error',
+                6500
+            );
+            return;
+        }
+
+        setSubmitting(true);
+        const { error } = await supabase.from(TABLE).insert({
+            email: email.toLowerCase(),
+            role,
+            country,
+            note,
+            source: 'web',
+        });
+
+        setSubmitting(false);
+
+        if (error) {
+            const msg = error.message || '';
+            if (error.code === '23505') {
+                toast.show('Bu e-posta ile zaten bir kayıt var.', 'info', 3500);
+            } else if (
+                msg.includes('schema cache') ||
+                msg.includes('Could not find the table') ||
+                msg.includes('does not exist')
+            ) {
+                toast.show(
+                    'Supabase’de early_access_leads tablosu yok. Dashboard → SQL Editor’da sql/early_access_leads.sql dosyasını çalıştırın (README).',
+                    'error',
+                    8000
+                );
+            } else if (msg.includes('row-level security') || error.code === '42501') {
+                toast.show(
+                    'Kayıt reddedildi. Supabase’de tablo ve RLS politikalarını kontrol edin (README).',
+                    'error',
+                    5000
+                );
+            } else {
+                console.error(error);
+                toast.show(error.message || 'Kayıt sırasında bir hata oluştu.', 'error', 4000);
+            }
+            return;
+        }
+
         toast.show('Erken erişim talebin alındı. Teşekkürler!', 'success', 3000);
         form.reset();
         onClose();
@@ -39,7 +96,7 @@ export function EarlyAccessModal({ open, onClose }: Props) {
 
     return (
         <div
-            className="fixed inset-0 bg-black/85 backdrop-blur-md z-[120] flex items-center justify-center px-4"
+            className="fixed inset-0 bg-black/85 z-[120] flex items-center justify-center px-4"
             role="dialog"
             aria-modal="true"
             aria-labelledby="early-access-title"
@@ -64,7 +121,7 @@ export function EarlyAccessModal({ open, onClose }: Props) {
                         E-posta adresini bırak, lansmandan önce AdScope AI&apos;yı deneyebileceğin davet linkini gönderelim.
                     </p>
 
-                    <form className="space-y-4" onSubmit={handleSubmit}>
+                    <form className="early-access-form space-y-4" onSubmit={handleSubmit}>
                         <div className="text-left">
                             <label htmlFor="ea-email" className="block text-[11px] font-semibold text-zinc-400 mb-1.5 uppercase tracking-wider">
                                 E-posta adresi
@@ -74,8 +131,9 @@ export function EarlyAccessModal({ open, onClose }: Props) {
                                 name="email"
                                 type="email"
                                 required
+                                disabled={submitting}
                                 placeholder="ornek@firma.com"
-                                className="w-full px-3 py-2.5 rounded-lg bg-white/[0.05] border border-white/[0.1] text-sm text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-white/30 focus:border-white/30 transition-all"
+                                className="w-full px-3 py-2.5 rounded-lg bg-white/[0.05] border border-white/[0.1] text-sm text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-white/30 focus:border-white/30 transition-all disabled:opacity-50"
                             />
                         </div>
                         <div className="text-left grid sm:grid-cols-2 gap-4">
@@ -86,7 +144,8 @@ export function EarlyAccessModal({ open, onClose }: Props) {
                                 <select
                                     id="ea-role"
                                     name="role"
-                                    className="w-full px-3 py-2.5 rounded-lg bg-white/[0.05] border border-white/[0.1] text-sm text-white focus:outline-none focus:ring-1 focus:ring-white/30 transition-all"
+                                    disabled={submitting}
+                                    className="w-full px-3 py-2.5 rounded-lg bg-white/[0.05] border border-white/[0.1] text-sm text-white focus:outline-none focus:ring-1 focus:ring-white/30 transition-all disabled:opacity-50"
                                 >
                                     <option value="">Seç (opsiyonel)</option>
                                     <option value="creator">İçerik Üreticisi</option>
@@ -102,7 +161,8 @@ export function EarlyAccessModal({ open, onClose }: Props) {
                                 <select
                                     id="ea-country"
                                     name="country"
-                                    className="w-full px-3 py-2.5 rounded-lg bg-white/[0.05] border border-white/[0.1] text-sm text-white focus:outline-none focus:ring-1 focus:ring-white/30 transition-all"
+                                    disabled={submitting}
+                                    className="w-full px-3 py-2.5 rounded-lg bg-white/[0.05] border border-white/[0.1] text-sm text-white focus:outline-none focus:ring-1 focus:ring-white/30 transition-all disabled:opacity-50"
                                 >
                                     <option value="">Seç (opsiyonel)</option>
                                     <option value="us">ABD</option>
@@ -120,21 +180,32 @@ export function EarlyAccessModal({ open, onClose }: Props) {
                                 id="ea-note"
                                 name="note"
                                 rows={3}
+                                disabled={submitting}
                                 placeholder="Örn: TikTok reklam kreatiflerini analiz etmek ve yeni script fikirleri üretmek istiyorum."
-                                className="w-full px-3 py-2.5 rounded-lg bg-white/[0.05] border border-white/[0.1] text-sm text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-white/30 transition-all resize-none"
+                                className="w-full px-3 py-2.5 rounded-lg bg-white/[0.05] border border-white/[0.1] text-sm text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-white/30 transition-all resize-none disabled:opacity-50"
                             />
                         </div>
 
                         <button
                             type="submit"
-                            className="w-full mt-1 bg-white hover:bg-zinc-100 text-black font-semibold py-2.5 rounded-xl text-sm flex items-center justify-center gap-2 transition-colors"
+                            disabled={submitting}
+                            className="w-full mt-1 bg-white hover:bg-zinc-100 text-black font-semibold py-2.5 rounded-xl text-sm flex items-center justify-center gap-2 transition-colors disabled:opacity-60 disabled:pointer-events-none"
                         >
-                            <i className="fa-solid fa-envelope-open-text" />
-                            Erken erişim talebini gönder
+                            {submitting ? (
+                                <>
+                                    <i className="fa-solid fa-circle-notch fa-spin" />
+                                    Gönderiliyor…
+                                </>
+                            ) : (
+                                <>
+                                    <i className="fa-solid fa-envelope-open-text" />
+                                    Erken erişim talebini gönder
+                                </>
+                            )}
                         </button>
 
                         <p className="text-[11px] text-zinc-600 mt-1 text-center">
-                            Şimdilik yalnızca iletişim almak için topluyoruz.
+                            Veriler Supabase üzerinde güvenli şekilde saklanır.
                         </p>
                     </form>
                 </div>
