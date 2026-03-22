@@ -93,3 +93,4 @@ Kök dizindeki `index.html`, `js/` ve `components/*.html` dosyaları eski statik
 ## Lisans
 
 Özel proje — `private: true`.
+"# adscope" 
