@@ -118,7 +118,7 @@ export function EarlyAccessModal({ open, onClose }: Props) {
                         Erken Erişim Talebi
                     </h3>
                     <p className="text-zinc-500 text-sm mb-6">
-                        E-posta adresini bırak, lansmandan önce AdScope AI&apos;yı deneyebileceğin davet linkini gönderelim.
+                        E-posta adresini bırak, lansmandan önce TrendCatcher AI&apos;yı deneyebileceğin davet linkini gönderelim.
                     </p>
 
                     <form className="early-access-form space-y-4" onSubmit={handleSubmit}>

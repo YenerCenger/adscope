@@ -19,7 +19,7 @@ export default function Page() {
 
     useEffect(() => {
         const t = setTimeout(() => {
-            toast.show("AdScope AI'ya hoş geldiniz.", 'success', 3000);
+            toast.show("TrendCatcher AI'ya hoş geldiniz.", 'success', 3000);
         }, 500);
         return () => clearTimeout(t);
     }, [toast]);
@@ -37,26 +37,22 @@ export default function Page() {
         <>
             {/* ===== HERO + DEMO ===== */}
             <header id="demo" className="hero-interfere pt-20 pb-16 lg:pt-28 lg:pb-20">
-                {/* Glow orbs — GPU-composited, static (no scroll repaint) */}
+                {/* Lightweight ambient glow layers */}
                 <div aria-hidden="true" className="pointer-events-none select-none absolute inset-0 overflow-hidden" style={{ willChange: 'auto' }}>
                     <div
-                        className="absolute opacity-50"
+                        className="absolute opacity-40"
                         style={{
                             width: 'min(38vw, 460px)', height: '90%',
                             top: '0', left: '-8%',
                             background: 'radial-gradient(ellipse 60% 75% at 30% 50%, rgba(160, 35, 65, 0.5) 0%, transparent 70%)',
-                            filter: 'blur(80px)',
-                            transform: 'translateZ(0)',
                         }}
                     />
                     <div
-                        className="absolute opacity-45"
+                        className="absolute opacity-35"
                         style={{
                             width: 'min(40vw, 480px)', height: '90%',
                             top: '0', right: '-8%',
                             background: 'radial-gradient(ellipse 55% 72% at 70% 50%, rgba(35, 65, 150, 0.48) 0%, transparent 70%)',
-                            filter: 'blur(80px)',
-                            transform: 'translateZ(0)',
                         }}
                     />
                 </div>
@@ -69,7 +65,6 @@ export default function Page() {
                         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                         <span className="flex items-center gap-2 text-zinc-500 text-[11px] font-medium tracking-widest uppercase">
                             <span className="relative flex h-1.5 w-1.5">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
                                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
                             </span>
                             İnteraktif Demo
@@ -108,7 +103,6 @@ export default function Page() {
                         className="w-[700px] h-[300px] rounded-full"
                         style={{
                             background: 'radial-gradient(ellipse, rgba(80, 40, 140, 0.5) 0%, transparent 70%)',
-                            filter: 'blur(80px)',
                         }}
                     />
                 </div>

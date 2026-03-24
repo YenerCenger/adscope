@@ -1,4 +1,4 @@
-# AdScope AI
+# TrendCatcher AI
 
 Yapay zeka destekli trend analizi ve viral içerik demo arayüzü. Next.js (App Router), React 18, TypeScript ve Tailwind CSS ile geliştirilmiştir.
 
@@ -93,4 +93,4 @@ Kök dizindeki `index.html`, `js/` ve `components/*.html` dosyaları eski statik
 ## Lisans
 
 Özel proje — `private: true`.
-"# adscope" 
+"# TrendCatcher AI" 

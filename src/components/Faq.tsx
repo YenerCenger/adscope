@@ -4,7 +4,7 @@ import { useState } from 'react';
 const FAQS = [
     {
         q: 'Gerçek ürün mü yoksa demo mu görüyorum?',
-        a: 'Bu sayfa AdScope AI için tasarlanmış interaktif bir ürün demosu. Gerçek üründe aynı deneyim gerçek veri kaynakları ve kendi hesabınızla çalışır.',
+        a: 'Bu sayfa TrendCatcher AI için tasarlanmış interaktif bir ürün demosu. Gerçek üründe aynı deneyim gerçek veri kaynakları ve kendi hesabınızla çalışır.',
     },
     {
         q: 'Demo sırasında neleri test edebilirim?',

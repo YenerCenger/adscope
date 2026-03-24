@@ -14,16 +14,35 @@ export function Navbar() {
     const [scrolled, setScrolled]     = useState(false);
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 10);
+        let ticking = false;
+        let lastValue = false;
+
+        const onScroll = () => {
+            if (ticking) return;
+            ticking = true;
+
+            requestAnimationFrame(() => {
+                const nextValue = window.scrollY > 10;
+                if (nextValue !== lastValue) {
+                    lastValue = nextValue;
+                    setScrolled(nextValue);
+                }
+                ticking = false;
+            });
+        };
+
+        // Ensure initial state is in sync on first paint.
+        lastValue = window.scrollY > 10;
+        setScrolled(lastValue);
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+            className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,box-shadow] duration-200 ${
                 scrolled
-                    ? 'bg-black/97 border-b border-white/[0.06] shadow-[0_1px_0_rgba(255,255,255,0.04)]'
+                    ? 'bg-black/95 border-b border-white/[0.06] shadow-[0_1px_0_rgba(255,255,255,0.04)]'
                     : 'bg-transparent border-b border-transparent'
             }`}
         >
@@ -35,7 +54,7 @@ export function Navbar() {
                         <i className="fa-solid fa-layer-group text-black" style={{ fontSize: '9px' }} />
                     </div>
                     <span className="text-[13px] font-semibold tracking-tight text-white">
-                        AdScope <span className="text-zinc-500">AI</span>
+                        TrendCatcher <span className="text-zinc-500">AI</span>
                     </span>
                 </a>
 
@@ -77,7 +96,7 @@ export function Navbar() {
             </div>
 
             {/* Mobile menu */}
-            <div className={`${mobileOpen ? 'block' : 'hidden'} md:hidden bg-black/98 border-t border-white/[0.06] backdrop-blur-xl`}>
+            <div className={`${mobileOpen ? 'block' : 'hidden'} md:hidden bg-black/98 border-t border-white/[0.06]`}>
                 <div className="container mx-auto px-6 py-2">
                     {[...NAV_LINKS, { href: '#early-access', label: 'Erken Erişim' }].map(({ href, label }) => (
                         <a

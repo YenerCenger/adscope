@@ -29,7 +29,7 @@ export function Footer() {
                             <div className="w-6 h-6 rounded-md bg-white flex items-center justify-center shrink-0">
                                 <span className="text-black font-bold text-xs">A</span>
                             </div>
-                            <span className="text-white font-semibold text-sm tracking-wide">AdScope AI</span>
+                            <span className="text-white font-semibold text-sm tracking-wide">TrendCatcher AI</span>
                         </div>
                         <p className="text-zinc-600 text-xs max-w-[200px] leading-relaxed">
                             Rakiplerinizin viral sırlarını saniyeler içinde keşfedin.
@@ -57,7 +57,7 @@ export function Footer() {
 
                 {/* Divider */}
                 <div className="border-t border-white/[0.06] py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
-                    <p className="text-zinc-700 text-[12px]">© 2026 AdScope AI. Tüm hakları saklıdır.</p>
+                    <p className="text-zinc-700 text-[12px]">© 2026 TrendCatcher AI. Tüm hakları saklıdır.</p>
                     <p className="text-zinc-700 text-[12px]">Türkiye&apos;de tasarlandı</p>
                 </div>
 
@@ -67,7 +67,7 @@ export function Footer() {
                         className="absolute bottom-0 left-1/2 -translate-x-1/2 whitespace-nowrap font-bold text-[clamp(56px,12vw,120px)] leading-none text-white/[0.04]"
                         style={{ letterSpacing: '-0.03em' }}
                     >
-                        AdScope
+                        TrendCatcher AI
                     </p>
                 </div>
             </div>

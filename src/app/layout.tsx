@@ -13,7 +13,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-    title: 'AdScope AI — Rakiplerinizin Viral Sırlarını Keşfedin',
+    title: 'TrendCatcher AI — Rakiplerinizin Viral Sırlarını Keşfedin',
     description: 'Yapay zeka destekli trend analiz platformu. Viral videoları analiz edin, script üretin.',
 };
 

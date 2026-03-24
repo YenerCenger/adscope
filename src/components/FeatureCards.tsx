@@ -6,9 +6,9 @@ const FEATURE_SECTIONS = [
         num: '01',
         eyebrow: 'Pazar Keşfi',
         title: 'Müşterilerinizden önce\nne olduğunu öğrenin.',
-        desc: 'AdScope AI hedef pazarınızı sürekli izler; davranış veya trendler değiştiğinde, hatalar büyümeden önce sizi uyarır.',
+        desc: 'TrendCatcher AI hedef pazarınızı sürekli izler; davranış veya trendler değiştiğinde, hatalar büyümeden önce sizi uyarır.',
         tags: ['Çoklu Pazar İzleme', 'Kategori Filtreleri', 'Canlı Veri', 'Engagement Skoru'],
-        windowTitle: 'Pazar Paneli — AdScope AI',
+        windowTitle: 'Pazar Paneli — TrendCatcher AI',
         content: (
             <div className="space-y-2">
                 <div className="flex items-center justify-between mb-3">
@@ -38,9 +38,9 @@ const FEATURE_SECTIONS = [
         num: '02',
         eyebrow: 'Derin Analiz',
         title: 'Ne olduğunu\nanlayın.',
-        desc: 'Yalnızca görüntülenme sayısı değil; hook yapısı, senaryo akışı, görsellik ve CTA stratejisi. AdScope kök nedeni bulur.',
+        desc: 'Yalnızca görüntülenme sayısı değil; hook yapısı, senaryo akışı, görsellik ve CTA stratejisi. TrendCatcher AI kök nedeni bulur.',
         tags: ['Hook Skoru', 'Senaryo Yapısı', 'Viral Skor', 'Tahmin Motoru'],
-        windowTitle: 'Video Detay Analizi — AdScope AI',
+        windowTitle: 'Video Detay Analizi — TrendCatcher AI',
         content: (
             <div>
                 <div className="flex items-center gap-2.5 mb-5">
@@ -83,7 +83,7 @@ const FEATURE_SECTIONS = [
         title: 'Özgüvenle\niçerik üretin.',
         desc: 'Analiz edilen viral videolardan ilham alan özelleştirilmiş scriptler üretin. Typewriter efektiyle canlı oluşturma, tek tıkla kopyalama.',
         tags: ['Otomatik Script', 'Typewriter Animasyon', 'Panoya Kopyala', 'Demo Kredi Sistemi'],
-        windowTitle: 'AI Script Üretici — AdScope AI',
+        windowTitle: 'AI Script Üretici — TrendCatcher AI',
         content: (
             <div>
                 <div className="flex items-center justify-between mb-4">

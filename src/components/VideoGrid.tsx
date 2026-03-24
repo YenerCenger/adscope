@@ -72,7 +72,7 @@ function buildBulkReportText(
               ? 'Performans dengeli. Önce en yüksek skorlu videonun ilk saniyelerindeki vaat ve son bölümdeki çağrıyı inceleyin; aynı yapıyı ürününüze çevirin.'
               : 'Karşılaştırma için daha yüksek skorlu içerikler de seçerek ortak kanca ve senaryo kalıplarını çıkarın.';
 
-    return `ADSCOPE AI — TOPLU TREND RAPORU
+    return `TrendCatcher AI — TOPLU TREND RAPORU
 ${'─'.repeat(36)}
 Tarih: ${date}
 Pazar: ${COUNTRY_UI[countryKey]}
@@ -347,7 +347,7 @@ export function VideoGrid({ earlyAccessOpen, onCloseEarlyAccess }: VideoGridProp
                         <span className="demo-mac-traffic-light w-3 h-3 rounded-full bg-[#28c840]" />
                     </div>
                     <p className="flex-1 text-center text-[11px] font-medium text-zinc-500 -ml-9">
-                        AdScope AI — İnteraktif Demo
+                        TrendCatcher AI — İnteraktif Demo
                     </p>
                 </div>
 

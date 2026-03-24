@@ -5,13 +5,13 @@ const STEPS = [
     {
         num: '01',
         title: 'Rakiplerinizi Keşfedin',
-        desc: 'AdScope AI, pazarınızı sürekli izler ve trend kaymalarını siz fark etmeden önce tespit eder — kullanıcılar şikâyet etmeden önce.',
+        desc: 'TrendCatcher AI, pazarınızı sürekli izler ve trend kaymalarını siz fark etmeden önce tespit eder — kullanıcılar şikâyet etmeden önce.',
         tags: ['Çoklu Pazar', 'Kategori Analizi', 'Canlı Veri'],
     },
     {
         num: '02',
         title: 'Ne Olduğunu Anlayın',
-        desc: 'Yalnızca metrik değil; hook yapısı, senaryo akışı ve engagement stratejisi. AdScope kök nedeni bulur ve neden viral olduğunu açıklar.',
+        desc: 'Yalnızca metrik değil; hook yapısı, senaryo akışı ve engagement stratejisi. TrendCatcher AI kök nedeni bulur ve neden viral olduğunu açıklar.',
         tags: ['Hook Analizi', 'Viral Skor', 'Senaryo Yapısı'],
     },
     {
@@ -103,7 +103,7 @@ function Step2Content() {
     );
 }
 
-const STEP_TITLES = ['Pazar Paneli — AdScope AI', 'Analiz Motoru — AdScope AI', 'AI Script Üretici — AdScope AI'];
+const STEP_TITLES = ['Pazar Paneli — TrendCatcher AI', 'Analiz Motoru — TrendCatcher AI', 'AI Script Üretici — TrendCatcher AI'];
 const STEP_CONTENTS = [<Step0Content key={0} />, <Step1Content key={1} />, <Step2Content key={2} />];
 
 export function HowItWorks() {
@@ -113,7 +113,7 @@ export function HowItWorks() {
                 {/* Heading */}
                 <div className="text-center mb-20">
                     <h2 className="text-3xl lg:text-4xl font-bold text-white mb-5 leading-tight">
-                        AdScope AI, viral içerikleri{' '}
+                        TrendCatcher AI, viral içerikleri{' '}
                         <em className="font-playfair italic text-zinc-400">bulur,</em>
                         <br />
                         <em className="font-playfair italic text-zinc-400">anlar</em>{' '}

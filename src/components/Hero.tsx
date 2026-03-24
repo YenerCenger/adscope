@@ -26,7 +26,7 @@ export function Hero() {
             {/* Right: description + CTA */}
             <div className="lg:max-w-[34%] flex flex-col items-start gap-5 lg:pb-1">
                 <p className="text-zinc-400 text-sm leading-relaxed">
-                    AdScope AI, trend videolarını yapay zeka ile analiz ederek viral
+                    TrendCatcher AI, trend videolarını yapay zeka ile analiz ederek viral
                     script&apos;ler üretir. Rakiplerinizin stratejilerini saniyeler içinde
                     çözün — aşağıdaki interaktif demoyu şimdi deneyin.
                 </p>

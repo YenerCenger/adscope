@@ -949,7 +949,7 @@ export const AdScopeApp = {
 
                 // Show welcome toast
                 setTimeout(() => {
-                    AdScopeApp.toast.show('AdScope AI\'ya hoş geldiniz! 🚀', 'success', 3000);
+                    AdScopeApp.toast.show('TrendCatcher AI\'ya hoş geldiniz! 🚀', 'success', 3000);
                 }, 500);
             }
         };
