@@ -3,6 +3,7 @@
 import { videoDatabase, type VideoRecord } from '@/data/videoDatabase';
 import { useToast } from '@/context/ToastContext';
 import { useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent } from 'react';
+import { createPortal } from 'react-dom';
 
 /* ─── constants ──────────────────────────────────────────── */
 const COUNTRIES  = ['🇺🇸 United States', '🇹🇷 Turkey', '🇩🇪 Germany', '🇧🇷 Brazil'] as const;
@@ -311,11 +312,6 @@ export function VideoGrid({ earlyAccessOpen, onCloseEarlyAccess }: VideoGridProp
     }, []);
 
     useEffect(() => {
-        document.body.style.overflow = modalVideo || reportOpen ? 'hidden' : '';
-        return () => { document.body.style.overflow = ''; };
-    }, [modalVideo, reportOpen]);
-
-    useEffect(() => {
         const onKey = (e: KeyboardEvent) => {
             const tgt = e.target as HTMLElement;
             if (['INPUT','TEXTAREA','SELECT'].includes(tgt.tagName) && e.key !== 'Escape') return;
@@ -538,7 +534,7 @@ export function VideoGrid({ earlyAccessOpen, onCloseEarlyAccess }: VideoGridProp
             </div>
 
             {/* ── Modal ─────────────────────────────────── */}
-            {modalVideo && (
+            {modalVideo && typeof window !== 'undefined' && createPortal(
                 <div
                     className="fixed inset-0 bg-black/88 z-[100] flex items-center justify-center p-4"
                     role="dialog" aria-modal="true" aria-labelledby="vm-title"
@@ -638,11 +634,12 @@ export function VideoGrid({ earlyAccessOpen, onCloseEarlyAccess }: VideoGridProp
                             </button>
                         </div>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
 
             {/* Toplu rapor çıktısı */}
-            {reportOpen && (
+            {reportOpen && typeof window !== 'undefined' && createPortal(
                 <div
                     className="fixed inset-0 bg-black/88 z-[110] flex items-center justify-center p-4"
                     role="dialog"
@@ -686,7 +683,8 @@ export function VideoGrid({ earlyAccessOpen, onCloseEarlyAccess }: VideoGridProp
                             </button>
                         </div>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </>
     );
