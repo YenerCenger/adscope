@@ -6,6 +6,12 @@
    TrendCatcher AI — Global Design System (Interfere-inspired)
    ============================================================ */
 
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     scroll-behavior: smooth;
     background-color: #020203;

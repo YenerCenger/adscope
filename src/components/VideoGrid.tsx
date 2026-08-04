@@ -335,7 +335,7 @@ export function VideoGrid({ earlyAccessOpen, onCloseEarlyAccess }: VideoGridProp
     return (
         <>
             {/* Mac window chrome */}
-            <div className="mx-auto max-w-5xl demo-mac-window rounded-2xl overflow-hidden">
+            <div className="mx-auto w-full max-w-5xl demo-mac-window rounded-2xl overflow-hidden">
                 <div className="demo-mac-titlebar flex items-center gap-2 px-4 py-2.5">
                     <div className="flex items-center gap-1.5 shrink-0" aria-hidden>
                         <span className="demo-mac-traffic-light w-3 h-3 rounded-full bg-[#ff5f57]" />
@@ -436,7 +436,7 @@ export function VideoGrid({ earlyAccessOpen, onCloseEarlyAccess }: VideoGridProp
                     </aside>
 
                     {/* ── Main area ───────────────────────── */}
-                    <div className="flex-1 overflow-y-auto custom-scrollbar p-4 relative">
+                    <div className="flex-1 min-w-0 overflow-y-auto custom-scrollbar p-4 relative">
 
                         {/* Loading overlay */}
                         {loading && (
@@ -536,11 +536,14 @@ export function VideoGrid({ earlyAccessOpen, onCloseEarlyAccess }: VideoGridProp
             {/* ── Modal ─────────────────────────────────── */}
             {modalVideo && typeof window !== 'undefined' && createPortal(
                 <div
-                    className="fixed inset-0 bg-black/88 z-[100] flex items-center justify-center p-4"
+                    className="fixed inset-0 bg-black/88 z-[100] overflow-y-auto overscroll-contain p-4"
                     role="dialog" aria-modal="true" aria-labelledby="vm-title"
-                    onClick={(e) => { if (e.target === e.currentTarget) setModalVideo(null); }}
+                    onMouseDown={(e) => { if (e.target === e.currentTarget) setModalVideo(null); }}
                 >
-                    <div className="bg-[#0a0a0c] border border-white/[0.09] rounded-2xl max-w-3xl w-full max-h-[88vh] overflow-y-auto custom-scrollbar shadow-2xl animate-fade-in-scale">
+                    <div
+                        className="mx-auto my-4 bg-[#0a0a0c] border border-white/[0.09] rounded-2xl w-full max-w-3xl max-h-[calc(100dvh-2rem)] overflow-y-auto custom-scrollbar shadow-2xl animate-fade-in-scale"
+                        onMouseDown={(e) => e.stopPropagation()}
+                    >
 
                         {/* Modal header */}
                         <div className="sticky top-0 bg-[#0a0a0c]/98 border-b border-white/[0.07] px-5 py-4 flex justify-between items-center z-10">
@@ -641,13 +644,16 @@ export function VideoGrid({ earlyAccessOpen, onCloseEarlyAccess }: VideoGridProp
             {/* Toplu rapor çıktısı */}
             {reportOpen && typeof window !== 'undefined' && createPortal(
                 <div
-                    className="fixed inset-0 bg-black/88 z-[110] flex items-center justify-center p-4"
+                    className="fixed inset-0 bg-black/88 z-[110] overflow-y-auto overscroll-contain p-4"
                     role="dialog"
                     aria-modal="true"
                     aria-labelledby="bulk-report-title"
-                    onClick={(e) => { if (e.target === e.currentTarget) setReportOpen(false); }}
+                    onMouseDown={(e) => { if (e.target === e.currentTarget) setReportOpen(false); }}
                 >
-                    <div className="bg-[#0a0a0c] border border-white/[0.1] rounded-2xl max-w-lg w-full max-h-[85vh] flex flex-col shadow-2xl animate-fade-in-scale">
+                    <div
+                        className="mx-auto my-4 bg-[#0a0a0c] border border-white/[0.1] rounded-2xl max-w-lg w-full max-h-[calc(100dvh-2rem)] flex flex-col shadow-2xl animate-fade-in-scale"
+                        onMouseDown={(e) => e.stopPropagation()}
+                    >
                         <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.07] shrink-0">
                             <h3 id="bulk-report-title" className="text-sm font-semibold text-white">
                                 Toplu trend raporu

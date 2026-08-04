@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import { ToastProvider } from '@/context/ToastContext';
@@ -15,6 +15,12 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
     title: 'TrendCatcher AI — Rakiplerinizin Viral Sırlarını Keşfedin',
     description: 'Yapay zeka destekli trend analiz platformu. Viral videoları analiz edin, script üretin.',
+};
+
+export const viewport: Viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    viewportFit: 'cover',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

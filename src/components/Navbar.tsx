@@ -46,14 +46,14 @@ export function Navbar() {
                     : 'bg-transparent border-b border-transparent'
             }`}
         >
-            <div className="container mx-auto px-6 h-14 flex items-center justify-between gap-6">
+            <div className="container mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
 
                 {/* Logo */}
                 <a href="/" className="flex items-center gap-2 shrink-0 group">
                     <div className="w-6 h-6 bg-white rounded-[6px] flex items-center justify-center group-hover:bg-zinc-200 transition-colors">
                         <i className="fa-solid fa-layer-group text-black" style={{ fontSize: '9px' }} />
                     </div>
-                    <span className="text-[13px] font-semibold tracking-tight text-white">
+                    <span className="text-[12px] sm:text-[13px] font-semibold tracking-tight text-white">
                         TrendCatcher <span className="text-zinc-500">AI</span>
                     </span>
                 </a>
@@ -87,7 +87,7 @@ export function Navbar() {
                 {/* Mobile toggle */}
                 <button
                     type="button"
-                    className="md:hidden text-zinc-400 hover:text-white transition-colors ml-auto"
+                    className="md:hidden text-zinc-400 hover:text-white transition-colors ml-2"
                     aria-label={mobileOpen ? 'Menüyü kapat' : 'Menüyü aç'}
                     onClick={() => setMobileOpen((o) => !o)}
                 >
